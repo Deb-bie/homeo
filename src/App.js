@@ -1,6 +1,10 @@
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import Navbar from "./components/navbar";
-import Homepage from './pages/homepage';
+import Home from './pages/homepage';
+import Footer from "./components/footer/"
+import Login from "./pages/login/"
+import Register from "./pages/register/"
+
 
 
 function App() {
@@ -9,8 +13,11 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
-          <Route path="/" element={<Homepage />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
+        <Footer />
       </Router>
     </div>
   );
