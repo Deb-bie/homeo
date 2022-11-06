@@ -1,13 +1,22 @@
 import React from 'react'
 import Slider from '../../components/slider';
+import Categories from "../../components/categories/"
+import FeaturedProducts from "../../components/featuredProducts/"
+import Sales from '../../components/sales';
+import Blogs from '../../components/blogs';
 
-const Homepage = () => {
+
+
+const Home = () => {
   return (
     <div>
       <Slider />
-      <div>My slider</div>
+      <Categories />
+      <FeaturedProducts />
+      <Sales />
+      <Blogs />
     </div>
   )
 }
 
-export default Homepage;
+export default Home;
