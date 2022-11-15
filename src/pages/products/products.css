@@ -1,0 +1,117 @@
+.pcard {
+    /* width: 280px; */
+    /* height: 250px; */
+    padding: 1.5rem;
+    background: #80808026;
+    position: relative;
+    display: flex;
+    transition: 0.4s ease-out;
+
+}
+
+.pcard:hover:before {
+    opacity: 1;
+}
+
+.pcard:hover .pinfo {
+    opacity: 1;
+}
+
+.pcard:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 2;
+    transition: 0.5s;
+    opacity: 0;
+}
+
+.pcard .pinfo {
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    position: relative;
+    text-align: center;
+    z-index: 3;
+    color: white;
+    opacity: 0;
+    transition: 0.5s;
+}
+
+@media screen and (min-width: 50px) and (max-width:639px) {
+    .pcard .pinfo {
+        height: 100px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        position: relative;
+        text-align: center;
+        z-index: 3;
+        color: white;
+        opacity: 0;
+        transition: 0.5s;
+    }
+}
+
+
+
+.pcard .pinfo .icons:hover {
+    background: black;
+    color: white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* .accordion {
+  max-width: 600px;
+  margin: 2rem auto;
+} */
+
+/* .accordion-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  cursor: pointer;
+  background-color: #21aeca;
+} */
+
+/* .accordion-title:hover {
+  background-color: #3ab4cc;
+} */
+
+/* .accordion-title,
+.accordion-content {
+  padding: 1rem;
+} */
+
+/* .accordion-content {
+  background-color: #39b9d2;
+}
+
+@media screen and (max-width: 700px) {
+  body {
+    font-size: 18px;
+  }
+
+  .accordion {
+    width: 90%;
+  }
+} */

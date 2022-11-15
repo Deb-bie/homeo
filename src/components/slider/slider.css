@@ -1,0 +1,45 @@
+.head {
+  line-height: 117%;
+}
+
+.ani1 {
+  -webkit-animation-delay: 0;
+  animation-delay: 0;
+}
+.ani2 {
+  -webkit-animation-delay: 0.5s;
+  animation-delay: 0.5s;
+}
+
+.ani3 {
+  -webkit-animation-delay: 0.75s;
+  animation-delay: 0.75s;
+}
+
+.ani4 {
+  -webkit-animation-delay: 1s;
+  animation-delay: 1s;
+}
+
+.slide-up {
+  -webkit-animation: slide-up 0.9s cubic-bezier(0.65, 0, 0.35, 1) both;
+          animation: slide-up 0.9s cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+
+@-webkit-keyframes slide-up {
+  0% {
+    transform: translateY(100px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-up {
+  0% {
+    transform: translateY(100px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
