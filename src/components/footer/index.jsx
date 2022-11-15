@@ -5,8 +5,10 @@ import {AiFillInstagram, AiFillTwitterCircle} from "react-icons/ai"
 
 const Footer = () => {
   return (
+
     <div className=" mb-8 w-[100%] h-full flex overflow-hidden ">
         <div className="gap-12 w-[100%] h-full flex flex-col flex-nowrap content-center justify-between">
+            <hr className="mt-24 mb-12 h-[2px] bg-[#333] " />
             
             <div className="gap-8 w-[100%] h-full 4xs:px-8 sm:px-0 flex flex-row flex-wrap justify-evenly content-start items-start ">
                 <div className="flex flex-col fex-nowrap justify-start content-center items-start">

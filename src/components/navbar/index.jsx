@@ -3,10 +3,12 @@ import Badge from '@mui/material/Badge';
 import {IoPersonOutline, IoCartOutline, IoHeartOutline, IoSearchOutline} from "react-icons/io5"
 import { BsFacebook} from "react-icons/bs";
 import { AiFillTwitterCircle, AiFillInstagram } from "react-icons/ai"
+import {MdClose} from "react-icons/md";
 import { motion } from "framer-motion";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-import Logo from "../../assets/logo1.png"
+import Logo from "../../assets/logo.svg"
+import Image1 from "../../assets/images/1.jpg";
 import "./style.css"
 
 
@@ -75,9 +77,23 @@ const itemsVariants = {
 
 
 const Navbar = () => {
+    const navigate = useNavigate()
+
     const [mobile, setMobile] = useState(false)
 
     const handleMobile = () => {setMobile(!mobile)}
+
+    const [openCart, setOpenCart] = useState(false)
+
+    const handleOpenCart = () => {setOpenCart(!openCart)}
+
+    const checkOut = () => {
+        navigate("/checkout")
+    }
+
+    const cart = () => {
+        navigate("/cart")
+    }
 
 
     window.addEventListener("scroll", function () {
@@ -87,10 +103,10 @@ const Navbar = () => {
 
 
   return (
-    <nav className="sticky top-0 flex flex-row w-full 4xs:overflow-hidden h-[100px] z-10 overflow-clip bg-white">
-        <div className=' w-[100%] h-[100px] px-12 flex flex-row flex-nowrap justify-between items-center content-center' >
+    <nav className="sticky top-0 flex flex-row w-full 4xs:overflow-hidden h-[100px] z-50 overflow-clip bg-white">
+        <div className=' w-[100%] h-[100px] 4xs:px-2 sm:px-12 flex flex-row flex-nowrap justify-between items-center content-center' >
 
-            <div className="hidden lg:flex flex-row flex-nowrap items-center content-center  bg-white cursor-pointer " >
+            <div className="w-[30%] hidden lg:flex flex-row flex-nowrap items-center content-center cursor-pointer " >
                 <div className="flex flex-row justify-between content-center items-center lg:w-full hover:border-b-2 border-b-2 border-slate-100 transform transition duration-500 hover:scale-90 " >
                     <input type="text" placeholder="Please search for your home decor products" className="w-full h-8 outline-none focus-none flex text-ellipsis p-2 " />
                     <span className="flex left-[25%] pl-12 pr-2 ">
@@ -99,9 +115,9 @@ const Navbar = () => {
                 </div>
             </div>
 
-            <div className="lg:hidden flex flex-row " >
+            <div className="w-[30%] lg:hidden flex flex-row " >
 
-                <button onClick={() => handleMobile()} className=" absolute z-20" >
+                <button onClick={() => handleMobile()} className="z-20 " >
                     <svg width="23" height="23" viewBox="0 0 23 23">
                         <Path
                             animate={mobile ? "open" : "closed"}
@@ -202,26 +218,182 @@ const Navbar = () => {
                 </motion.div>
             </div>
 
-            <div className="flex flex-row items-center justify-center text-lg content-center  cursor-pointer">
-                <img src={Logo} alt='logo' className="flex flex-row justify-center" />
+            <div className="w-[30%] flex flex-row items-center justify-center text-lg content-center  cursor-pointer">
+                <Link to="/">
+                    <img src={Logo} alt='logo' className=" h-auto object-contain flex flex-row justify-center" />
+                </Link>
             </div>
 
-            <div className="flex flex-row items-center content-center justify-end">
+            <div className="w-[30%] h-full  flex flex-row items-center content-center justify-center overflow-hidden">
                 <div className="flex lg:mr-8 mr-4 lg:text-2xl text-lg cursor-pointer">
-                    <IoPersonOutline className="cursor-pointer " />
+                    <Link to="/login">
+                        <IoPersonOutline className="cursor-pointer " />
+                    </Link>
                 </div>
 
                 <div className="flex lg:mr-8 mr-4 lg:text-2xl text-lg cursor-pointer">
-                    <Badge badgeContent={4} color="error" className="" >
-                        <IoHeartOutline />
-                    </Badge>
+                    <Link to="wishlist">
+                        <Badge badgeContent={4} color="error" className="" >
+                            <IoHeartOutline />
+                        </Badge>
+                    </Link>
                 </div>
 
-                <div className="flex lg:text-2xl text-lg cursor-pointer">
+                <div onClick={handleOpenCart} className="flex lg:text-2xl text-lg cursor-pointer">
+
                     <Badge badgeContent={4} color="error" badgeSize={10} >
                         <IoCartOutline className="z-0" />
                     </Badge>
+
                 </div>
+
+                {
+                    (openCart) 
+                    ? 
+                    <div className="fixed right-0 top-0 h-screen sm:w-1/3 4xs:w-screen 4xs:overflow:hidden flex flex-col bg-white shadow-xl z-50 ">
+                        <div className=" w-[100%] flex flex-col justify-between overflow-hidden ">
+
+                            <div className="h-[5%] flex pt-[20px] pl-[20px] text-3xl cursor-pointer ">
+                                <MdClose onClick={handleOpenCart} />
+                            </div>
+
+
+                            <div className=" w-[100%] flex flex-col overflow-y-scroll h-[50%] ">
+
+                                <div className="pl-2 pr-6 pt-4 w-[100%] h-[120px] flex flex-row justify-between content-center items-center border-[1px] border-black border-x-transparent border-t-transparent ">
+                                    <div className=" w-[90%] h-[100px] flex flex-row flex-nowrap ">
+                                        <div className="flex ">
+                                            <img src={Image1} alt="product" className="w-[100px] h-[50px] object-contain " />
+                                        </div>
+
+                                        <div className="flex flex-col h-[100%]">
+                                            <div>Nancy Chair</div>
+                                            <div>Qty: 1</div>
+                                            <div>Price: $200</div>
+                                        </div>
+                                    </div>
+
+                                    <div className="w-[5%] " >
+                                        <MdClose />
+                                    </div>
+                                </div>
+
+
+                                <div className="pl-2 pr-6 pt-4 w-[100%] h-[120px] flex flex-row justify-between content-center items-center border-[1px] border-black border-x-transparent border-t-transparent ">
+                                    <div className=" w-[90%] h-[100px] flex flex-row flex-nowrap ">
+                                        <div className="flex ">
+                                            <img src={Image1} alt="product" className="w-[100px] h-[50px] object-contain " />
+                                        </div>
+
+                                        <div className="flex flex-col h-[100%]">
+                                            <div>Nancy Chair</div>
+                                            <div>Qty: 1</div>
+                                            <div>Price: $200</div>
+                                        </div>
+                                    </div>
+
+                                    <div className="w-[5%] " >
+                                        <MdClose />
+                                    </div>
+                                </div>
+
+
+                                <div className="pl-2 pr-6 pt-4 w-[100%] h-[120px] flex flex-row justify-between content-center items-center border-[1px] border-black border-x-transparent border-t-transparent ">
+                                    <div className=" w-[90%] h-[100px] flex flex-row flex-nowrap ">
+                                        <div className="flex ">
+                                            <img src={Image1} alt="product" className="w-[100px] h-[50px] object-contain " />
+                                        </div>
+
+                                        <div className="flex flex-col h-[100%]">
+                                            <div>Nancy Chair</div>
+                                            <div>Qty: 1</div>
+                                            <div>Price: $200</div>
+                                        </div>
+                                    </div>
+
+                                    <div className="w-[5%] " >
+                                        <MdClose />
+                                    </div>
+                                </div>
+
+
+                                <div className="pl-2 pr-6 pt-4 w-[100%] h-[120px] flex flex-row justify-between content-center items-center border-[1px] border-black border-x-transparent border-t-transparent ">
+                                    <div className=" w-[90%] h-[100px] flex flex-row flex-nowrap ">
+                                        <div className="flex ">
+                                            <img src={Image1} alt="product" className="w-[100px] h-[50px] object-contain " />
+                                        </div>
+
+                                        <div className="flex flex-col h-[100%]">
+                                            <div>Nancy Chair</div>
+                                            <div>Qty: 1</div>
+                                            <div>Price: $200</div>
+                                        </div>
+                                    </div>
+
+                                    <div className="w-[5%] " >
+                                        <MdClose />
+                                    </div>
+                                </div>
+
+                                <div className="pl-2 pr-6 pt-4 w-[100%] h-[120px] flex flex-row justify-between content-center items-center border-[1px] border-black border-x-transparent border-t-transparent ">
+                                    <div className=" w-[90%] h-[100px] flex flex-row flex-nowrap ">
+                                        <div className="flex ">
+                                            <img src={Image1} alt="product" className="w-[100px] h-[50px] object-contain " />
+                                        </div>
+
+                                        <div className="flex flex-col h-[100%]">
+                                            <div>Nancy Chair</div>
+                                            <div>Qty: 1</div>
+                                            <div>Price: $200</div>
+                                        </div>
+                                    </div>
+
+                                    <div className="w-[5%] " >
+                                        <MdClose />
+                                    </div>
+                                </div>
+
+                                <div className="pl-2 pr-6 pt-4 w-[100%] h-[120px] flex flex-row justify-between content-center items-center border-[1px] border-black border-x-transparent border-t-transparent ">
+                                    <div className=" w-[90%] h-[100px] flex flex-row flex-nowrap ">
+                                        <div className="flex ">
+                                            <img src={Image1} alt="product" className="w-[100px] h-[50px] object-contain " />
+                                        </div>
+
+                                        <div className="flex flex-col h-[100%]">
+                                            <div>Nancy Chair</div>
+                                            <div>Qty: 1</div>
+                                            <div>Price: $200</div>
+                                        </div>
+                                    </div>
+
+                                    <div className="w-[5%] " >
+                                        <MdClose />
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+                            <div className="4xs:mt-4 sm:mt-8 pl-6 pr-6 w-[100%] h-[35%] flex flex-col justify-end  ">
+                                <div className=" w-[100%] flex flex-row justify-between ">
+                                    <div className="flex text-2xl text-black">Subtotal</div>
+
+                                    <div className="flex text-xl text-rose-900 ">$100</div>
+                                </div>
+                                
+                                <div onClick={()=> {handleOpenCart(); cart()}} className="mt-6">
+                                    <button className="w-[100%] py-4 flex flex-row justify-center content-center items-center hover:bg-black hover:text-white text-black bg-white border-[1px] border-black ">View cart</button>
+                                </div>
+
+                                <div onClick={()=> {handleOpenCart(); checkOut()}} className="mt-6 mb-20 w-[100%] flex justify-center content-center">
+                                    <button className=" w-[100%] py-4  flex flex-row justify-center items-center content-center bg-black text-white hover:text-black hover:bg-white hover:border-[1px] hover:border-black ">Checkout</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    : ""
+                }
 
             </div>
         </div>
