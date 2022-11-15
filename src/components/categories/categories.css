@@ -1,3 +1,14 @@
+.cat-heading:after {
+    content: "";
+    height: 2px;
+    width: 50%;
+    background-color: red;
+    position: absolute;
+    bottom: -.5em;
+    left: 50%;
+    transform: translate(-50%);
+}
+
 .card {
     width: 280px;
     height: 250px;
@@ -16,7 +27,6 @@
 .card:hover {
     transform: translateY(20px);
 }
-
 
 .card:hover:before {
     opacity: 1;

@@ -17,7 +17,7 @@ const Blogs = () => {
 
             <div className="w-[80%] flex flex-col flex-nowrap  mt-8">
                 <div className="flex justify-end content-center">
-                    <Link to="#" className="hover:text-[red]" >See all</Link>
+                    <Link to="#" className="text-blue-400 underline hover:text-[red]" >See all</Link>
                 </div>
 
                 <div className="flex flex-row flex-wrap content-center items-center justify-between mt-8 gap-8">

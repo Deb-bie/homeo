@@ -16,10 +16,10 @@ const Categories = () => {
 
     return (
 
-        <div className="w-[100%] h-full p-8 flex flex-col flex-nowrap overflow-hidden bg-[orange] ">
+        <div className="w-[100%] h-full p-8 flex flex-col flex-nowrap overflow-hidden ">
             <div className="w-full flex flex-col justify-center content-center items-center">
                 
-                <div className="font-black text-3xl text-center">
+                <div className="cat-heading font-black text-3xl text-center inline-block relative">
                     Categories
                 </div>
 
