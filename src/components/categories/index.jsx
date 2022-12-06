@@ -1,15 +1,15 @@
 // import {useState} from "react";
-// import {useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 import "./categories.css";
 
 import CategoryData from "../../data/categoriesData.js"
 
 const Categories = () => {
-    // const navigate = useNavigate()
+    const navigate = useNavigate()
 
     const handleView = (category) => {
-        // navigate("/")
+        navigate("/products")
         console.log(category)
     }
 
@@ -33,7 +33,7 @@ const Categories = () => {
 
                             <div className="info">
                                 <h1>{item.category}</h1>
-                                <button onClick={() => handleView(item.category)}  >View More</button>
+                                <button onClick={() => handleView(item.category)}  >View</button>
                             </div>
                         </div>
                     ))}

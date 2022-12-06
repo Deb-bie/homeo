@@ -23,7 +23,6 @@
     box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.5);
 }
 
-
 .card:hover {
     transform: translateY(20px);
 }
@@ -32,12 +31,10 @@
     opacity: 1;
 }
 
-
 .card:hover .info {
     opacity: 1;
     transform: translateY(0px); 
 }
-
 
 .card:before {
     content: "";
@@ -75,7 +72,6 @@
     text-transform: capitalize;
 }
 
-
 .card .info p {
     letter-spacing: 1px;
     font-size: 15px;
@@ -100,7 +96,7 @@
 
 
 .card .info button:hover {
-    background: dodgerblue;
+    background: black;
     color: white;
 }
 

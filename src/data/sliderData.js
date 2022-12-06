@@ -1,12 +1,6 @@
-import One from "../assets/images/a1.jpg"
-import Two from "../assets/images/CO1 2.png"
-import Three from "../assets/images/DS1 2.png"
-
-
-// import One from "../assets/logo.svg"
-// import Two from "../assets/images/CH3.png"
-// import Three from "../assets/images/CH4.png"
-
+import One from "../assets/chairs/CH8.png"
+import Two from "../assets/couches/CO1.png"
+import Three from "../assets/tables/TA1.png"
 
 const SliderData  = [
     {

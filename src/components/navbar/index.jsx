@@ -22,7 +22,6 @@ const Path = (props) => (
     />
 );
 
-
 const variants = {
     show: {
       transform: "translateX(0em)",
@@ -54,7 +53,6 @@ const menuTransition = {
     delay: 0.1,
 };
 
-
 const itemsVariants = {
     show: {
         ...variants.show,
@@ -74,26 +72,16 @@ const itemsVariants = {
 
 
 
-
-
-const Navbar = () => {
+const Navbar = ({cartItem}) => {
     const navigate = useNavigate()
 
     const [mobile, setMobile] = useState(false)
-
     const handleMobile = () => {setMobile(!mobile)}
-
     const [openCart, setOpenCart] = useState(false)
 
     const handleOpenCart = () => {setOpenCart(!openCart)}
-
-    const checkOut = () => {
-        navigate("/checkout")
-    }
-
-    const cart = () => {
-        navigate("/cart")
-    }
+    const checkOut = () => {navigate("/checkout")}
+    const cart = () => {navigate("/cart")}
 
 
     window.addEventListener("scroll", function () {
@@ -216,8 +204,8 @@ const Navbar = () => {
                         </div>
                     </div>
                 </motion.div>
-            </div>
-
+            </div>            
+            
             <div className="w-[30%] flex flex-row items-center justify-center text-lg content-center  cursor-pointer">
                 <Link to="/">
                     <img src={Logo} alt='logo' className=" h-auto object-contain flex flex-row justify-center" />
@@ -241,7 +229,7 @@ const Navbar = () => {
 
                 <div onClick={handleOpenCart} className="flex lg:text-2xl text-lg cursor-pointer">
 
-                    <Badge badgeContent={4} color="error" badgeSize={10} >
+                    <Badge badgeContent={cartItem.length === 0 ? 0 : cartItem.length } color="error" badgesize={10} >
                         <IoCartOutline className="z-0" />
                     </Badge>
 
@@ -258,131 +246,47 @@ const Navbar = () => {
                             </div>
 
 
-                            <div className=" w-[100%] flex flex-col overflow-y-scroll h-[50%] ">
-
-                                <div className="pl-2 pr-6 pt-4 w-[100%] h-[120px] flex flex-row justify-between content-center items-center border-[1px] border-black border-x-transparent border-t-transparent ">
-                                    <div className=" w-[90%] h-[100px] flex flex-row flex-nowrap ">
-                                        <div className="flex ">
-                                            <img src={Image1} alt="product" className="w-[100px] h-[50px] object-contain " />
-                                        </div>
-
-                                        <div className="flex flex-col h-[100%]">
-                                            <div>Nancy Chair</div>
-                                            <div>Qty: 1</div>
-                                            <div>Price: $200</div>
-                                        </div>
-                                    </div>
-
-                                    <div className="w-[5%] " >
-                                        <MdClose />
-                                    </div>
-                                </div>
-
-
-                                <div className="pl-2 pr-6 pt-4 w-[100%] h-[120px] flex flex-row justify-between content-center items-center border-[1px] border-black border-x-transparent border-t-transparent ">
-                                    <div className=" w-[90%] h-[100px] flex flex-row flex-nowrap ">
-                                        <div className="flex ">
-                                            <img src={Image1} alt="product" className="w-[100px] h-[50px] object-contain " />
-                                        </div>
-
-                                        <div className="flex flex-col h-[100%]">
-                                            <div>Nancy Chair</div>
-                                            <div>Qty: 1</div>
-                                            <div>Price: $200</div>
-                                        </div>
-                                    </div>
-
-                                    <div className="w-[5%] " >
-                                        <MdClose />
-                                    </div>
-                                </div>
-
-
-                                <div className="pl-2 pr-6 pt-4 w-[100%] h-[120px] flex flex-row justify-between content-center items-center border-[1px] border-black border-x-transparent border-t-transparent ">
-                                    <div className=" w-[90%] h-[100px] flex flex-row flex-nowrap ">
-                                        <div className="flex ">
-                                            <img src={Image1} alt="product" className="w-[100px] h-[50px] object-contain " />
-                                        </div>
-
-                                        <div className="flex flex-col h-[100%]">
-                                            <div>Nancy Chair</div>
-                                            <div>Qty: 1</div>
-                                            <div>Price: $200</div>
-                                        </div>
-                                    </div>
-
-                                    <div className="w-[5%] " >
-                                        <MdClose />
-                                    </div>
-                                </div>
-
-
-                                <div className="pl-2 pr-6 pt-4 w-[100%] h-[120px] flex flex-row justify-between content-center items-center border-[1px] border-black border-x-transparent border-t-transparent ">
-                                    <div className=" w-[90%] h-[100px] flex flex-row flex-nowrap ">
-                                        <div className="flex ">
-                                            <img src={Image1} alt="product" className="w-[100px] h-[50px] object-contain " />
-                                        </div>
-
-                                        <div className="flex flex-col h-[100%]">
-                                            <div>Nancy Chair</div>
-                                            <div>Qty: 1</div>
-                                            <div>Price: $200</div>
-                                        </div>
-                                    </div>
-
-                                    <div className="w-[5%] " >
-                                        <MdClose />
-                                    </div>
-                                </div>
-
-                                <div className="pl-2 pr-6 pt-4 w-[100%] h-[120px] flex flex-row justify-between content-center items-center border-[1px] border-black border-x-transparent border-t-transparent ">
-                                    <div className=" w-[90%] h-[100px] flex flex-row flex-nowrap ">
-                                        <div className="flex ">
-                                            <img src={Image1} alt="product" className="w-[100px] h-[50px] object-contain " />
-                                        </div>
-
-                                        <div className="flex flex-col h-[100%]">
-                                            <div>Nancy Chair</div>
-                                            <div>Qty: 1</div>
-                                            <div>Price: $200</div>
-                                        </div>
-                                    </div>
-
-                                    <div className="w-[5%] " >
-                                        <MdClose />
-                                    </div>
-                                </div>
-
-                                <div className="pl-2 pr-6 pt-4 w-[100%] h-[120px] flex flex-row justify-between content-center items-center border-[1px] border-black border-x-transparent border-t-transparent ">
-                                    <div className=" w-[90%] h-[100px] flex flex-row flex-nowrap ">
-                                        <div className="flex ">
-                                            <img src={Image1} alt="product" className="w-[100px] h-[50px] object-contain " />
-                                        </div>
-
-                                        <div className="flex flex-col h-[100%]">
-                                            <div>Nancy Chair</div>
-                                            <div>Qty: 1</div>
-                                            <div>Price: $200</div>
-                                        </div>
-                                    </div>
-
-                                    <div className="w-[5%] " >
-                                        <MdClose />
-                                    </div>
-                                </div>
-
+                            <div className=" w-[100%] flex flex-col overflow-y-scroll h-[45%] ">
+                                {
+                                    cartItem.length > 0 
+                                    ? 
+                                    <>
+                                        {
+                                            cartItem.map((item, id) => (
+                                                <div key={id} className="pl-2 pr-6 pt-4 w-[100%] h-[120px] flex flex-row justify-between content-center items-center border-[1px] border-black border-x-transparent border-t-transparent ">
+                                                    <div className=" w-[90%] h-[100px] flex flex-row flex-nowrap ">
+                                                        <div className="flex ">
+                                                            <img src={item.image} alt="product" className="w-[100px] h-[50px] object-contain " />
+                                                        </div>
+                                                        <div className="flex flex-col h-[100%]">
+                                                            <div>{cartItem.productName}</div>
+                                                            <div>Qty: 1</div>
+                                                            <div>Price: $200</div>
+                                                        </div>
+                                                    </div>
+    
+                                                    <div className="w-[5%] " >
+                                                        <MdClose />
+                                                    </div>
+                                                </div>
+                                            ))
+                                        }
+                                    </>
+                                    
+                                    : ""
+                                }
 
                             </div>
 
 
-                            <div className="4xs:mt-4 sm:mt-8 pl-6 pr-6 w-[100%] h-[35%] flex flex-col justify-end  ">
+                            <div className="4xs:mt-4 sm:pt-8 pl-6 pr-6 w-[100%] h-[35%] flex flex-col justify-center content-center items-center shadow-xl  ">
                                 <div className=" w-[100%] flex flex-row justify-between ">
                                     <div className="flex text-2xl text-black">Subtotal</div>
 
                                     <div className="flex text-xl text-rose-900 ">$100</div>
                                 </div>
                                 
-                                <div onClick={()=> {handleOpenCart(); cart()}} className="mt-6">
+                                <div onClick={()=> {handleOpenCart(); cart()}} className="mt-6 w-[100%] flex justify-center content-center">
                                     <button className="w-[100%] py-4 flex flex-row justify-center content-center items-center hover:bg-black hover:text-white text-black bg-white border-[1px] border-black ">View cart</button>
                                 </div>
 
