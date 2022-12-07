@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-// import {useState, useEffect} from "react-router-dom"
 import { BsArrowRight } from "react-icons/bs";
 
 import Image1 from "../../assets/images/CH2 1.png"
@@ -29,16 +28,7 @@ const Sales = () => {
     useEffect(() => {
         const interval = setInterval(() => getTime(deadline), 1000);
         return () => clearInterval(interval);
-      }, []);
-
-
-
-
-
-
-
-
-
+    }, []);
 
 
   return (
@@ -49,18 +39,14 @@ const Sales = () => {
                 
                 <div className="4xs:w-full 4xs:pl-12 sm:w-[50%] h-full flex flex-col flex-wrap 4xs:justify-stretch sm:justify-center content-center items-start">
                     <h1 className="text-4xl font-semibold ">
-                        Our Annual Sales
+                        Our Annual Sales are
                         &nbsp;
-                        <span className="text-[red]">75% Off</span>
+                        <span className="text-[#f60a37]">75% Off</span>
                     </h1>
                     <p className="w-[80%] flex mt-6 text-gray-900 mb-12"> 
                         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Enim ab necessitatibus 
                         cumque delectus odit, possimus dicta aperiam aliquam? 
                     </p>
-
-
-                    <div>Implement Timer</div>
-
 
 
                     <div className=" w-[50%] flex flex-row justify-between items-center content-center text-3xl text-rose-600 " role="timer">
