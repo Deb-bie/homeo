@@ -18,6 +18,7 @@ import PageNotFound from "./pages/pageNotFound/";
 function App() {
 
   const [cartItem, setCartItem] = useState([])
+  const [favoriteItem, setFavoriteItem] = useState([])
   const [totalPrice, setTotalPrice] = useState(0)
 
   const addToCart = (product) => {
@@ -26,6 +27,15 @@ function App() {
       setCartItem(cartItem.map((item) => (item.id === product.id ? { ...productExist, qty: productExist.qty + 1 } : item)))
     } else {
       setCartItem([...cartItem, { ...product, qty: 1 }])
+    }
+  }
+
+  const addToWishlist = (product) => {
+    const productExist = favoriteItem.find((item) => item.id === product.id)
+    if (productExist) {
+      setFavoriteItem(favoriteItem.map((item) => (item.id === product.id ? { ...productExist, qty: productExist.qty + 1 } : item)))
+    } else {
+      setFavoriteItem([...favoriteItem, { ...product, qty: 1 }])
     }
   }
 
@@ -56,6 +66,17 @@ function App() {
     }
   }
 
+  const removeFromFavorites = (product) => {
+    const productExist = favoriteItem.find((item) => item.id === product.id)
+    if (productExist.qty >= 1) {
+      setFavoriteItem(favoriteItem.filter((item) => item.id !== product.id))
+    }
+  }
+
+  const removeAllProductsFromFavorites = () => {
+    setFavoriteItem([])
+  }
+
   
   
   
@@ -76,14 +97,21 @@ function App() {
   return (
     <div>
       <Router>
-        <Navbar cartItem={cartItem} />
+        <Navbar cartItem={cartItem} favoriteItem={favoriteItem} />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/account" element={<Account />} />
           <Route path="/updateaccount" element={<UpdateAccount />} />
-          <Route path="/wishlist" element={<Favorites />} />
+          <Route path="/wishlist" 
+            element={<Favorites 
+              favoriteItem={favoriteItem}
+              addToCart={addToCart}
+              removeFromFavorites={removeFromFavorites}
+              removeAllProductsFromFavorites={removeAllProductsFromFavorites}
+            />} 
+          />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/cart" 
             element={<Cart 
@@ -95,7 +123,19 @@ function App() {
               decreaseProductQuantity={decreaseProductQuantity}
             />} 
           />
-          <Route path="/products" element={<Products cartItem={cartItem} addToCart={addToCart} />} />
+          <Route path="/products" 
+            element={<Products 
+              cartItem={cartItem} 
+              favoriteItem={favoriteItem}
+              addToCart={addToCart} 
+              removeFromCart={removeFromCart}
+              addToWishlist={addToWishlist}
+              removeFromFavorites={removeFromFavorites}
+              increaseProductQuantity={increaseProductQuantity}
+              decreaseProductQuantity={decreaseProductQuantity}
+              
+            />} 
+          />
           <Route path="/products/:id" element={<ProductDescriptionPage />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
