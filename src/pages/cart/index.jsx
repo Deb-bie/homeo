@@ -8,6 +8,7 @@ const Cart = ({cartItem, removeFromCart, removeAllProductsFromCart,increaseProdu
     const navigate = useNavigate()
 
     const handleShopping = () => {navigate("/products")}
+    const handleDescription = (id) => { navigate("/products/id") }
 
 
 
@@ -49,10 +50,10 @@ const Cart = ({cartItem, removeFromCart, removeAllProductsFromCart,increaseProdu
                         cartItem.map((item, id) => (
                             <div key={id} className="outline-none border-[1px] border-b-gray-500 border-t-transparent border-x-transparent 4xs:py-4 sm:py-6 4xs:px-2 sm:px-6 w-[100%] h-[100%]  flex flex-row justify-between content-center items-center overflow-hidden ">
                                 <div  className="gap-4 w-[40%] flex 4xs:flex-col sm:flex-row 4xs:justify-center sm:justify-start 4xs:items-start sm:items-center content-center overflow-hidden cursor-pointer ">
-                                    <div className="flex 4xs:w-[30px] 2xs:w-[100px] xs:w-[150px] h-auto sm:w-[40%] sm:h-[100px] 4xs:justify-center 4xs:content-center 4xs:items-center bg-gray-100  " >
-                                        <img src={item.image} className=" w-[80%] object-contain " />
+                                    <div onClick={() => handleDescription(1)} className="flex 4xs:w-[30px] 2xs:w-[100px] xs:w-[150px] h-auto sm:w-[40%] sm:h-[100px] 4xs:justify-center 4xs:content-center 4xs:items-center bg-gray-100  " >
+                                        <img src={item.image} className=" w-[80%] h-[100%] object-contain " />
                                     </div>
-                                    <div className="4xs:w-full sm:w-[150px] inline-block overflow-hidden text-ellipsis hover:text-sky-700">
+                                    <div onClick={() => handleDescription(1)} className="4xs:w-full sm:w-[150px] inline-block overflow-hidden text-ellipsis hover:text-sky-700">
                                         {item.productName}
                                     </div>
                                 </div>
