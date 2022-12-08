@@ -14,7 +14,7 @@ const ProductDescriptionPage = () => {
                 <div className="4xs:p-2 sm:p-12 w-[100%] h-[150px] bg-gray-800 text-white flex flex-col flex-nowrap overflow-hidden ">
                     <h1 className="w-[100%] text-xl sm:text-4xl font-semibold flex justify-start items-start ">Product Description</h1>
                     <span className="w-[100%] text-base font-[300] flex flex-row justify-end ">
-                        <span className="w-[30%] flex justify-around sm:pr-0 pr-8 ">
+                        <span className="4xs:w-[70%] sm:w-[30%] flex justify-around sm:pr-0 pr-8 ">
                             <Link to="/product">PRODUCT</Link>
                             &nbsp;
                             <h2>/</h2>
@@ -24,20 +24,20 @@ const ProductDescriptionPage = () => {
                     </span>
                 </div>
 
-                <div className="mt-12 w-[100%] h-full gap-4 p-6 flex 4xs:flex-col sm:flex-row justify-between content-center items-start mb-12">
+                <div className="mt-12 w-[100%] h-full gap-4 p-6 4xs:px-4 sm:px-12 lg:px-32 flex 4xs:flex-col sm:flex-row justify-between content-center items-start mb-12">
 
-                    <div className="4xs:w-[100%] sm:w-[50%] h-[50%] flex flex-row   " >
+                    <div className="4xs:w-[100%] sm:w-[40%] h-[50%] flex flex-row bg-gray-100 " >
                         <img src={Image1} alt="product" className="flex w-[100%] h-[100%] object-contain   " />
                     </div>
 
-                    <div className="4xs:w-[100%] sm:w-[50%] 4xs:p-[1px] sm:pl-6  flex flex-col justify-start content-start items-start mb-8 " >
+                    <div className="4xs:w-[100%] sm:w-[40%] 4xs:p-[1px] sm:pl-6  flex flex-col justify-start content-start items-start 4xs:mb-4 sm:mb-8 " >
                         <h1 className="flex flex-row text-4xl font-semibold mb-4">Namcy Chair</h1>
                         <h1 className="flex flex-row text-3xl font-semibold text-gray-600 mb-4">$100.00</h1>
                         <p className="text-base mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore fugiat vel molestias aspernatur, 
                             Fugit hic reprehenderit quas? 
                         </p>
 
-                        <div className="4xs:w-[100%] sm:w-[70%] flex 4xs:flex-col gap-6 sm:flex-row justify-between content-center items-center mb-8  ">
+                        <div className="4xs:w-[100%] sm:w-[100%] flex 4xs:flex-col gap-6 sm:flex-row justify-between content-center items-center mb-8  ">
                             <div className="py-2 text-xl 4xs:w-[100%] sm:w-[40%] flex flex-row justify-evenly border-[1px] border-black  ">
                                 <div>-</div>
                                 <div>1</div>
@@ -58,27 +58,27 @@ const ProductDescriptionPage = () => {
 
                 </div>
 
-                <hr className="w-[100%] mt-24 mb-6 h-[2px] bg-gray-400 " />
+                <hr className="w-[100%] 4xs:mt-6 md:mt-24 mb-6 h-[2px] bg-gray-400 " />
 
 
-                <div className="w-[100%] h-full gap-6 p-6 flex 4xs:flex-col sm:flex-row justify-between content-center items-center mb-6 ">
-                    <div className="4xs:w-[100%] sm:w-[50%] flex flex-col">
+                <div className="w-[100%] h-full gap-6 p-6 4xs:px-4 sm:px-12 lg:px-32 flex 4xs:flex-col sm:flex-row justify-between content-center items-center mb-6 ">
+                    <div className="4xs:w-[100%] sm:w-[40%] flex flex-col">
                         <h1 className="flex text-3xl mb-4">Description</h1>
                         <p className="flex text-lg">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nihil, autem quisquam nobis in error nulla ea totam rem aut adipisci 
                             illo atque magni, doloremque itaque ex iure aliquid illum tempora! 
                         </p>
                     </div>
 
-                    <div className="4xs:w-[100%] sm:w-[40%] h-[50%] flex flex-row   " >
+                    <div className="4xs:w-[100%] sm:w-[40%] h-[50%] flex flex-row  bg-gray-100  " >
                         <img src={Image1} alt="product" className="flex w-[100%] h-[100%] object-contain   " />
                     </div>
                 </div>
 
 
-                <hr className="w-[100%] mt-24 mb-12 h-[2px] bg-gray-400 " />
+                <hr className="w-[100%] 4xs:mt-6 sm:mt-24 mb-12 h-[2px] bg-gray-400 " />
 
-                <div className="w-[100%] h-full gap-12 p-6 flex 4xs:flex-col sm:flex-row-reverse justify-between content-center items-start mb-6 ">
-                    <div className="4xs:w-[100%] sm:w-[50%] flex flex-col">
+                <div className="w-[100%] h-full gap-12 p-6 4xs:px-4 sm:px-12 lg:px-32 flex 4xs:flex-col sm:flex-row-reverse justify-between content-center items-start mb-6 ">
+                    <div className="4xs:w-[100%] sm:w-[40%] flex flex-col">
                         <h1 className="flex text-3xl mb-4">Features</h1>
                         <ul>
                             <li className="flex flex-row items-center content-center ">
@@ -88,7 +88,7 @@ const ProductDescriptionPage = () => {
                         </ul>
                     </div>
 
-                    <div className="4xs:w-[100%] sm:w-[40%] h-[50%] flex flex-row   " >
+                    <div className="4xs:w-[100%] sm:w-[40%] h-[50%] flex flex-row bg-gray-100  " >
                         <img src={Image1} alt="product" className="flex w-[100%] h-[100%] object-contain   " />
                     </div>
                 </div>
