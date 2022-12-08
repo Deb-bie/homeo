@@ -1,5 +1,6 @@
 import {useState} from "react";
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import ScrollToTop from "./utils/scroll.jsx"
 import Navbar from "./components/navbar";
 import Home from './pages/homepage';
 import Footer from "./components/footer/"
@@ -98,6 +99,7 @@ function App() {
     <div>
       <Router>
         <Navbar cartItem={cartItem} favoriteItem={favoriteItem} />
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
