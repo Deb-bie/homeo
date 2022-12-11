@@ -10,7 +10,15 @@ import {MdClose} from "react-icons/md"
 import "./products.css"
 
 
-const Products = ({cartItem, addToCart, addToWishlist, increaseProductQuantity, decreaseProductQuantity, removeFromFavorites, removeFromCart}) => {
+const Products = ({
+    cartItem, 
+    addToCart, 
+    addToWishlist, 
+    increaseProductQuantity, 
+    decreaseProductQuantity, 
+    removeFromFavorites, 
+    removeFromCart
+}) => {
     const [filter, setFilter] = useState(false)
     const [categories, setCategories] = useState(false);
     const [availability, setAvailability] = useState(false);
@@ -371,6 +379,8 @@ const Products = ({cartItem, addToCart, addToWishlist, increaseProductQuantity, 
                                             addToWishlist={addToWishlist} 
                                             removeFromFavorites={removeFromFavorites}
                                             cartItem={cartItem}
+                                            increaseProductQuantity={increaseProductQuantity}
+                                            decreaseProductQuantity={decreaseProductQuantity}
                                         />
                                     ))
                                 }

@@ -20,23 +20,22 @@ function App() {
 
   const [cartItem, setCartItem] = useState([])
   const [favoriteItem, setFavoriteItem] = useState([])
-  const [totalPrice, setTotalPrice] = useState(0)
 
   const addToCart = (product) => {
     const productExist = cartItem.find((item) => item.id === product.id)
     if (productExist) {
-      setCartItem(cartItem.map((item) => (item.id === product.id ? { ...productExist, qty: productExist.qty + 1 } : item)))
+      setCartItem(
+        cartItem.map((item) => (
+          item.id === product.id ? 
+          
+          { 
+            ...productExist, 
+            qty: productExist.qty + 1,
+            qtyPrice: productExist.qty * productExist.price,
+          } 
+        : item)))
     } else {
-      setCartItem([...cartItem, { ...product, qty: 1 }])
-    }
-  }
-
-  const addToWishlist = (product) => {
-    const productExist = favoriteItem.find((item) => item.id === product.id)
-    if (productExist) {
-      setFavoriteItem(favoriteItem.map((item) => (item.id === product.id ? { ...productExist, qty: productExist.qty + 1 } : item)))
-    } else {
-      setFavoriteItem([...favoriteItem, { ...product, qty: 1 }])
+      setCartItem([...cartItem, { ...product, qty: 1, qtyPrice: product.price }])
     }
   }
 
@@ -54,7 +53,14 @@ function App() {
   const increaseProductQuantity = (product, stock) => {
     const productExist = cartItem.find((item) => item.id === product.id)
     if ( (productExist.qty >= 1) & (productExist.qty <= stock-1) ) {
-      setCartItem(cartItem.map((item) => (item.id === product.id ? { ...productExist, qty: productExist.qty + 1 } : item)))
+      setCartItem(
+        cartItem.map((item) => (
+          item.id === product.id ? 
+          { 
+            ...productExist, 
+            qty: productExist.qty + 1,
+            qtyPrice: item.price * (item.qty + 1)
+          } : item)))
     }
   }
 
@@ -63,7 +69,16 @@ function App() {
     if (productExist.qty === 1) {
       setCartItem(cartItem.filter((item) => item.id !== product.id))
     } else {
-      setCartItem(cartItem.map((item) => (item.id === product.id ? { ...productExist, qty: productExist.qty - 1 } : item)))
+      setCartItem(cartItem.map((item) => (item.id === product.id ? { ...productExist, qty: productExist.qty - 1, qtyPrice: item.price * (item.qty -1) } : item)))
+    }
+  }
+
+  const addToWishlist = (product) => {
+    const productExist = favoriteItem.find((item) => item.id === product.id)
+    if (productExist) {
+      setFavoriteItem(favoriteItem.map((item) => (item.id === product.id ? { ...productExist, qty: productExist.qty + 1 } : item)))
+    } else {
+      setFavoriteItem([...favoriteItem, { ...product, qty: 1 }])
     }
   }
 
@@ -78,27 +93,21 @@ function App() {
     setFavoriteItem([])
   }
 
-  
-  
-  
 
-  
-  
-  const handleTotalPrice = (cartItem) => {
-    setTotalPrice(cartItem.reduce((price, item) => price + item.qty * item.price, 0))
-  } 
-  
-
-
-
-
-
+  const totalPrice = cartItem.reduce(
+    (price, item) => price + item.qty * item.price, 0
+  )
 
 
   return (
     <div>
       <Router>
-        <Navbar cartItem={cartItem} favoriteItem={favoriteItem} />
+        <Navbar 
+          cartItem={cartItem} 
+          favoriteItem={favoriteItem} 
+          removeFromCart={removeFromCart}
+          totalPrice={totalPrice}
+        />
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -114,7 +123,14 @@ function App() {
               removeAllProductsFromFavorites={removeAllProductsFromFavorites}
             />} 
           />
-          <Route path="/checkout" element={<Checkout />} />
+
+          <Route path="/checkout" 
+            element={<Checkout 
+            cartItem={cartItem} 
+            totalPrice={totalPrice}
+            />} 
+          />
+
           <Route path="/cart" 
             element={<Cart 
               cartItem={cartItem} 
@@ -123,6 +139,7 @@ function App() {
               removeAllProductsFromCart={removeAllProductsFromCart} 
               increaseProductQuantity={increaseProductQuantity}
               decreaseProductQuantity={decreaseProductQuantity}
+              totalPrice={totalPrice}
             />} 
           />
           <Route path="/products" 

@@ -3,7 +3,7 @@ import {Link} from "react-router-dom"
 
 
 
-const Checkout = () => {
+const Checkout = ({cartItem, totalPrice}) => {
     return (
         <div className="w-[100%] h-full flex overflow-hidden ">
             <div className="w-[100%] h-full flex flex-col flex-nowrap content-center items-start ">
@@ -106,7 +106,7 @@ const Checkout = () => {
                                     placeholder="Coupon code"
                                     className="py-2 px-4 w-[100%] outline-none border-[1px] border-black rounded-[5px] "  />
                                 
-                                <button className="mt-8 flex flex-row justify-center py-2 px-4 w-[60%] bg-black text-white">Apply</button>
+                                <button className="mt-8 flex flex-row justify-center py-4 px-4 w-[60%] bg-black text-white">Apply</button>
                             </form>
                         </div>
 
@@ -118,47 +118,29 @@ const Checkout = () => {
                                 <div className="flex" >Price</div>
                             </div>
 
-                            <div className="mt-8 w-[100%] flex flex-row justify-between border-[1px] border-x-transparent border-t-transparent border-b-black ">
-                                <div className=" w-[50%] flex overflow-hidden">
-                                    <span className=" w-[100%] flex flex-row flex-wrap justify-between">
-                                        <span className="flex">Homeo</span>
+                            {
+                                cartItem.length > 0 ? 
+                                cartItem.map((item, id) => (
+                                    <div className="mt-8 w-[100%] flex flex-row justify-between border-[1px] border-x-transparent border-t-transparent border-b-black ">
+                                        <div className=" w-[50%] flex overflow-hidden">
+                                            <span className=" w-[100%] flex flex-row flex-wrap justify-between">
+                                                <span className="flex">{item.productName}</span>
 
-                                        <span className="flex">
-                                            <pre>X  1</pre>
-                                        </span>
-                                    </span>
-                                </div>
+                                                <span className="flex">
+                                                    <pre>X  {item.qty}</pre>
+                                                </span>
+                                            </span>
+                                        </div>
 
-                                <div className="flex">$100</div>
-                            </div>
+                                        <div className="flex">${item.qtyPrice}</div>
+                                    </div>
+                                ))
+                                : ""
+                            }
 
-                            <div className="mt-8 w-[100%] flex flex-row justify-between border-[1px] border-x-transparent border-t-transparent border-b-black ">
-                                <div className=" w-[50%] flex overflow-hidden">
-                                    <span className=" w-[100%] flex flex-row flex-wrap justify-between">
-                                        <span className="flex">Homeo</span>
+                            
 
-                                        <span className="flex">
-                                            <pre>X  1</pre>
-                                        </span>
-                                    </span>
-                                </div>
-
-                                <div className="flex">$100</div>
-                            </div>
-
-                            <div className="mt-8 w-[100%] flex flex-row justify-between border-[1px] border-x-transparent border-t-transparent border-b-black ">
-                                <div className=" w-[50%] flex overflow-hidden">
-                                    <span className=" w-[100%] flex flex-row flex-wrap justify-between">
-                                        <span className="flex">Homeo</span>
-
-                                        <span className="flex">
-                                            <pre>X  1</pre>
-                                        </span>
-                                    </span>
-                                </div>
-
-                                <div className="flex">$100</div>
-                            </div>
+                            
 
 
                             <div className="mt-8 w-[100%] flex flex-row flex-wrap justify-between content-center items-center border-[1px] border-x-transparent border-t-transparent border-b-black ">
@@ -166,7 +148,7 @@ const Checkout = () => {
                                     Subtotal
                                 </div>
 
-                                <div className="flex">$100</div>
+                                <div className="flex">${totalPrice}</div>
                             </div>
 
                             <div className="mt-8 w-[100%] flex flex-row flex-wrap justify-between content-center items-center border-[1px] border-x-transparent border-t-transparent border-b-black ">
@@ -174,14 +156,14 @@ const Checkout = () => {
                                     Total
                                 </div>
 
-                                <div className="flex text-[red] font-black text-lg sm:text-2xl">$100</div>
+                                <div className="flex text-[red] font-black text-lg sm:text-2xl">${totalPrice}</div>
                             </div>
 
                         </div>
 
                         
                         <div className="flex my-8">
-                            <button className="bg-black text-white w-[100%] py-2 flex flex-row justify-center rounded-[3px] ">Place Order</button>
+                            <button className="bg-black text-white w-[100%] py-4 flex flex-row justify-center rounded-[3px] ">Place Order</button>
                         </div>
 
                         

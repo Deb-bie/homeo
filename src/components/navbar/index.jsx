@@ -8,7 +8,6 @@ import { motion } from "framer-motion";
 import { Link, useNavigate } from 'react-router-dom';
 
 import Logo from "../../assets/logo.svg"
-import Image1 from "../../assets/images/1.jpg";
 import "./style.css"
 
 
@@ -72,7 +71,7 @@ const itemsVariants = {
 
 
 
-const Navbar = ({cartItem}) => {
+const Navbar = ({cartItem, favoriteItem, removeFromCart, totalPrice}) => {
     const navigate = useNavigate()
 
     const [mobile, setMobile] = useState(false)
@@ -221,13 +220,21 @@ const Navbar = ({cartItem}) => {
 
                 <div className="flex lg:mr-8 mr-4 lg:text-2xl text-lg cursor-pointer">
                     <Link to="wishlist">
-                        <Badge badgeContent={4} color="error" className="" >
+                        <Badge badgeContent={favoriteItem === 0 ? 0 : favoriteItem.length} color="success" className="" >
                             <IoHeartOutline />
                         </Badge>
                     </Link>
                 </div>
 
-                <div onClick={handleOpenCart} className="flex lg:text-2xl text-lg cursor-pointer">
+                <div 
+                    onClick={
+                        cartItem.length > 0 ?         
+                            handleOpenCart
+                        : 
+                            () => navigate("/cart")
+                        
+                    } 
+                    className="flex lg:text-2xl text-lg cursor-pointer">
 
                     <Badge badgeContent={cartItem.length === 0 ? 0 : cartItem.length } color="error" badgesize={10} >
                         <IoCartOutline className="z-0" />
@@ -235,70 +242,65 @@ const Navbar = ({cartItem}) => {
 
                 </div>
 
+
                 {
-                    (openCart) 
-                    ? 
-                    <div className="fixed right-0 top-0 h-screen sm:w-1/3 4xs:w-screen 4xs:overflow:hidden flex flex-col bg-white shadow-xl z-50 ">
-                        <div className=" w-[100%] flex flex-col justify-between overflow-hidden ">
-
-                            <div className="h-[5%] flex pt-[20px] pl-[20px] text-3xl cursor-pointer ">
-                                <MdClose onClick={handleOpenCart} />
-                            </div>
-
-
-                            <div className=" w-[100%] flex flex-col overflow-y-scroll h-[45%] ">
-                                {
-                                    cartItem.length > 0 
-                                    ? 
-                                    <>
-                                        {
-                                            cartItem.map((item, id) => (
-                                                <div key={id} className="pl-2 pr-6 pt-4 w-[100%] h-[120px] flex flex-row justify-between content-center items-center border-[1px] border-black border-x-transparent border-t-transparent ">
-                                                    <div className=" w-[90%] h-[100px] flex flex-row flex-nowrap ">
-                                                        <div className="flex ">
-                                                            <img src={item.image} alt="product" className="w-[100px] h-[50px] object-contain " />
-                                                        </div>
-                                                        <div className="flex flex-col h-[100%]">
-                                                            <div>{cartItem.productName}</div>
-                                                            <div>Qty: 1</div>
-                                                            <div>Price: $200</div>
-                                                        </div>
-                                                    </div>
-    
-                                                    <div className="w-[5%] " >
-                                                        <MdClose />
-                                                    </div>
-                                                </div>
-                                            ))
-                                        }
-                                    </>
-                                    
-                                    : ""
-                                }
-
-                            </div>
-
-
-                            <div className="4xs:mt-4 sm:pt-8 pl-6 pr-6 w-[100%] h-[35%] flex flex-col justify-center content-center items-center shadow-xl  ">
-                                <div className=" w-[100%] flex flex-row justify-between ">
-                                    <div className="flex text-2xl text-black">Subtotal</div>
-
-                                    <div className="flex text-xl text-rose-900 ">$100</div>
-                                </div>
-                                
-                                <div onClick={()=> {handleOpenCart(); cart()}} className="mt-6 w-[100%] flex justify-center content-center">
-                                    <button className="w-[100%] py-4 flex flex-row justify-center content-center items-center hover:bg-black hover:text-white text-black bg-white border-[1px] border-black ">View cart</button>
-                                </div>
-
-                                <div onClick={()=> {handleOpenCart(); checkOut()}} className="mt-6 mb-20 w-[100%] flex justify-center content-center">
-                                    <button className=" w-[100%] py-4  flex flex-row justify-center items-center content-center bg-black text-white hover:text-black hover:bg-white hover:border-[1px] hover:border-black ">Checkout</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    : ""
+                    cartItem.length > 0 ? "" : ""
                 }
 
+
+                {
+                    openCart ? 
+                    <>
+                        
+                                <div className="fixed right-0 top-0 h-screen sm:w-1/3 4xs:w-screen 4xs:overflow:hidden flex flex-col bg-white shadow-xl z-50 ">
+                                    <div className=" w-[100%] h-[100%] flex flex-col justify-between overflow-hidden ">
+                                        <div className="h-[5%] flex pt-[20px] pl-[20px] text-3xl cursor-pointer ">
+                                            <MdClose onClick={handleOpenCart} />
+                                        </div>
+
+                                        <div className=" w-[100%] flex flex-col overflow-y-scroll h-[45%] bg-[#eeeeeead] ">
+                                            {                                
+                                                cartItem.map((item, id) => (
+                                                    <div key={id} className="pl-2 pr-6 pt-4 w-[100%] h-[120px] flex flex-row justify-between content-center items-center border-[1px] border-black border-x-transparent border-t-transparent">
+                                                        <div className=" w-[70%] h-[100px] flex flex-row justify-evenly content-center items-center  flex-nowrap">
+                                                            <div className="flex ">
+                                                                <img src={item.image} alt="product" className="w-[100px] h-[80px] object-contain " />
+                                                            </div>
+                                                            <div className="flex flex-col items-start content-center">
+                                                                <div>{cartItem.productName}</div>
+                                                                <div>Qty: {item.qty}</div>
+                                                                <div>${item.qtyPrice}</div>
+                                                            </div>
+                                                        </div>
+       
+                                                        <div className="w-[5%] cursor-pointer text-3xl " >
+                                                            <MdClose onClick={() => removeFromCart(item)} />
+                                                        </div>
+                                                    </div>
+                                                ))
+                                            }
+                                        </div>
+   
+                                        <div className="4xs:mt-4 sm:pt-8 pl-6 pr-6 w-[100%] h-[35%] flex flex-col justify-center content-center items-center shadow-xl ">
+                                            <div className=" w-[100%] flex flex-row justify-between ">
+                                                <div className="flex text-2xl text-black">Subtotal</div>
+                                                <div className="flex text-xl text-rose-900 ">${totalPrice}</div>
+                                            </div>
+                                        
+                                            <div onClick={()=> {handleOpenCart(); cart()}} className="mt-6 w-[100%] flex justify-center content-center">
+                                                <button className="w-[100%] py-4 flex flex-row justify-center content-center items-center hover:bg-black hover:text-white text-black bg-white border-[1px] border-black ">View cart</button>
+                                            </div>
+        
+                                            <div onClick={()=> {handleOpenCart(); checkOut()}} className="mt-6 mb-20 w-[100%] flex justify-center content-center">
+                                                <button className=" w-[100%] py-4  flex flex-row justify-center items-center content-center bg-black text-white hover:text-black hover:bg-white hover:border-[1px] hover:border-black ">Checkout</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                    </>
+                    : ""
+                }
             </div>
         </div>
     </nav>

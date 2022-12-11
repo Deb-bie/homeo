@@ -10,7 +10,6 @@ const Product = ({
     removeFromCart, 
     addToWishlist, 
     removeFromFavorites, 
-    cartItem
 }) => {
 
     const [fav, setFav] = useState(false)
@@ -98,18 +97,7 @@ const Product = ({
                                         <div className="text-2xl text-gray-400 mb-6 ">${product.price}</div>
                                         <div className="text-base mb-6">Availability: <span className="text-[green]">{product.availability}</span></div>
                                         <p className="flex text-lg mb-8 ">{product.description}</p>
-                                        <div className="w-[80%] flex 4xs:flex-col sm:flex-row gap-4 justify-between 4xs:mb-8 sm:mb-0 ">
-                                            {
-                                                cartItem ? 
-                                                
-                                                <button className="py-2 4xs:w-[100%] sm:w-[40%] flex flex-row justify-evenly border-[1px] border-black " >
-                                                    <span className="cursor-pointer">-</span>
-                                                    <span>1</span>
-                                                    <span className="cursor-pointer">+</span>
-                                                </button>
-                                                
-                                                : ""
-                                            }
+                                        <div className="w-[60%] flex 4xs:flex-col sm:flex-row gap-4 justify-between 4xs:mb-8 sm:mb-0 ">
 
                                             <button onClick={
                                                 cart ? 

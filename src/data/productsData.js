@@ -33,7 +33,7 @@ const ProductData = [
         image: Couches1,
         category: "Couches",
         availability: "In stock",
-        price: 200,
+        price: 300,
         stock: 20
     },
     {
