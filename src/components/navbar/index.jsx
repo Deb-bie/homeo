@@ -267,7 +267,7 @@ const Navbar = ({cartItem, favoriteItem, removeFromCart, totalPrice}) => {
                                                                 <img src={item.image} alt="product" className="w-[100px] h-[80px] object-contain " />
                                                             </div>
                                                             <div className="flex flex-col items-start content-center">
-                                                                <div>{cartItem.productName}</div>
+                                                                <div>{cartItem.name}</div>
                                                                 <div>Qty: {item.qty}</div>
                                                                 <div>${item.qtyPrice}</div>
                                                             </div>

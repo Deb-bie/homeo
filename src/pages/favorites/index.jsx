@@ -45,7 +45,7 @@ const Favorites = ({favoriteItem, addToCart, removeFromFavorites, removeAllProdu
                                             <img src={item.image} alt="product" className=" w-[80%] h-[100%] object-contain " />
                                         </div>
         
-                                        <div onClick={() => handleDescription(1)} className="4xs:w-full sm:w-[150px] inline-block overflow-hidden text-ellipsis hover:text-sky-700">{item.productName}</div>
+                                        <div onClick={() => handleDescription(1)} className="4xs:w-full sm:w-[150px] inline-block overflow-hidden text-ellipsis hover:text-sky-700">{item.name}</div>
                                     </div>
         
                                     <div className="4xs:px-0 xs:px-4 lg:px-12 4xs:py-0 xs:py-2 lg:py-8 gap-2 w-[30%] flex 4xs:flex-col sm:flex-row 4xs:justify-start  sm:justify-between content-center 4xs:items-start sm:items-center ">

@@ -1,8 +1,7 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
+import axios from "axios"
 import {Link} from "react-router-dom";
-import ProductData from "../../data/productsData.js"
 import Product from "./Product.jsx"
-
 import {FaBars} from "react-icons/fa"
 import {MdClose} from "react-icons/md"
 
@@ -19,6 +18,7 @@ const Products = ({
     removeFromFavorites, 
     removeFromCart
 }) => {
+    const [products, setProducts] = useState([])
     const [filter, setFilter] = useState(false)
     const [categories, setCategories] = useState(false);
     const [availability, setAvailability] = useState(false);
@@ -56,6 +56,16 @@ const Products = ({
             setPrice(!price)
         }
     }
+
+    const url = `https://homeo-api.onrender.com/api/products`
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            const results = await axios.get(url)
+            setProducts(results.data)
+        };
+        fetchProducts()
+    }, [products, url])
 
 
 
@@ -370,7 +380,7 @@ const Products = ({
                             
                             <div className="w-[90%] flex flex-row flex-wrap justify-evenly items-start content-start gap-8">
                                 {
-                                    ProductData.map((product, id) => (
+                                    products.map((product, id) => (
                                         <Product 
                                             key={id} 
                                             product={product} 

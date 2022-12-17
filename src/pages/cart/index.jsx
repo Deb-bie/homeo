@@ -56,9 +56,7 @@ const Cart = ({
                     </div>
 
                     {
-                        cartItem.map((item, id) => {
-                            // const qtyPrice = item.price * item.qty;
-                            
+                        cartItem.map((item, id) => {    
                             return (
                                 <div key={id} className="outline-none border-[1px] border-b-gray-500 border-t-transparent border-x-transparent 4xs:py-4 sm:py-6 4xs:px-2 sm:px-6 w-[100%] h-[100%]  flex flex-row justify-between content-center items-center overflow-hidden ">
                                     <div  className="gap-4 w-[40%] flex 4xs:flex-col sm:flex-row 4xs:justify-center sm:justify-start 4xs:items-start sm:items-center content-center overflow-hidden cursor-pointer ">
@@ -66,7 +64,7 @@ const Cart = ({
                                             <img src={item.image} alt="product" className=" w-[80%] h-[100%] object-contain " />
                                         </div>
                                         <div onClick={() => handleDescription(1)} className="4xs:w-full sm:w-[150px] inline-block overflow-hidden text-ellipsis hover:text-sky-700">
-                                            {item.productName}
+                                            {item.name}
                                         </div>
                                     </div>
             

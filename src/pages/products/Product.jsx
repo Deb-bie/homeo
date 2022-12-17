@@ -4,6 +4,7 @@ import {IoCartOutline, IoHeartOutline} from "react-icons/io5"
 import {MdClose} from "react-icons/md"
 
 
+
 const Product = ({
     product,
     addToCart, 
@@ -69,7 +70,7 @@ const Product = ({
                     </div>
 
                     <div className="flex flex-col items-center content-center justify-start mt-4 ">
-                        <h1 className="mb-2 text-xl">{product.productName}</h1>
+                        <h1 className="mb-2 text-xl">{product.name}</h1>
                         <div className="mb-4 text-base">${product.price}.00</div>
                     </div>
             </div>
@@ -93,7 +94,7 @@ const Product = ({
                                         <div className="w-[100%] 4xs:hidden sm:flex flex-row justify-end text-3xl mb-4" >
                                             <MdClose onClick={() => handleModal(!modal) } className="cursor-pointer" />
                                         </div>
-                                        <div className="text-3xl flex mb-4">{product.productName}</div>
+                                        <div className="text-3xl flex mb-4">{product.name}</div>
                                         <div className="text-2xl text-gray-400 mb-6 ">${product.price}</div>
                                         <div className="text-base mb-6">Availability: <span className="text-[green]">{product.availability}</span></div>
                                         <p className="flex text-lg mb-8 ">{product.description}</p>

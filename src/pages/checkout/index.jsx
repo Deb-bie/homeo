@@ -124,7 +124,7 @@ const Checkout = ({cartItem, totalPrice}) => {
                                     <div className="mt-8 w-[100%] flex flex-row justify-between border-[1px] border-x-transparent border-t-transparent border-b-black ">
                                         <div className=" w-[50%] flex overflow-hidden">
                                             <span className=" w-[100%] flex flex-row flex-wrap justify-between">
-                                                <span className="flex">{item.productName}</span>
+                                                <span className="flex">{item.name}</span>
 
                                                 <span className="flex">
                                                     <pre>X  {item.qty}</pre>
