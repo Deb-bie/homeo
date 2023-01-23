@@ -1,5 +1,6 @@
 import {useState} from "react";
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import { SkeletonTheme } from "react-loading-skeleton";
 import ScrollToTop from "./utils/scroll.jsx"
 import Navbar from "./components/navbar";
 import Home from './pages/homepage';
@@ -100,7 +101,7 @@ function App() {
 
 
   return (
-    <div>
+    // <SkeletonTheme color="#990" highlightColor="#550">
       <Router>
         <Navbar 
           cartItem={cartItem} 
@@ -160,7 +161,7 @@ function App() {
         </Routes>
         <Footer />
       </Router>
-    </div>
+    // </SkeletonTheme>
   );
 }
 

@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import Skeleton from "react-loading-skeleton";
 import axios from "axios"
 import {Link} from "react-router-dom";
 import Product from "./Product.jsx"
@@ -7,6 +8,7 @@ import {MdClose} from "react-icons/md"
 
 
 import "./products.css"
+import ProductSkeleton from "./ProductSkeleton.jsx";
 
 
 const Products = ({
@@ -23,6 +25,10 @@ const Products = ({
     const [categories, setCategories] = useState(false);
     const [availability, setAvailability] = useState(false);
     const [price, setPrice] = useState(false);
+
+    const [loading, setLoading] = useState(true)
+
+
 
     const handleCategories = () => {
         if ( (availability || price !== false) ){
@@ -57,12 +63,13 @@ const Products = ({
         }
     }
 
-    const url = `https://homeo-api.onrender.com/api/products`
+    const url = `api/products`
 
     useEffect(() => {
         const fetchProducts = async () => {
             const results = await axios.get(url)
             setProducts(results.data)
+            setLoading(false)
         };
         fetchProducts()
     }, [products, url])
@@ -378,9 +385,14 @@ const Products = ({
                         <div className="sm:pl-[4px] 4xs:w-[100%] lg:w-[75%] flex flex-row " >
                             {/* SHOW SELECTED FILTERS OVER HERE */}
                             
-                            <div className="w-[90%] flex flex-row flex-wrap justify-evenly items-start content-start gap-8">
+                            <div className="w-[90%] flex flex-row flex-wrap justify-evenly items-start content-start gap-8 md:mt-0 mt-12">
+
                                 {
-                                    products.map((product, id) => (
+                                    loading 
+                                    
+                                    ? <ProductSkeleton />
+                                    
+                                    : products.map((product, id) => (
                                         <Product 
                                             key={id} 
                                             product={product} 
