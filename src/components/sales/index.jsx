@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { BsArrowRight } from "react-icons/bs";
 
-import Image1 from "../../assets/images/CH2 1.png"
+import Image1 from "../../assets/images/a2.jpg"
 
 const Sales = () => {
 
@@ -15,7 +15,7 @@ const Sales = () => {
     const [minutes, setMinutes] = useState(0);
     const [seconds, setSeconds] = useState(0);
   
-    const deadline = "December, 31, 2022";
+    const deadline = "December, 31, 2023";
   
     const getTime = () => {
       const time = Date.parse(deadline) - Date.now();
@@ -88,14 +88,10 @@ const Sales = () => {
                     </button>
                 </div>
 
-                <div className="w-[100%] sm:w-[50%] flex justify-center sm:justify-end" >
+                <div className="w-[100%] sm:w-[30%] flex justify-center sm:justify-end" >
                     <img src={Image1} alt="sales" />
                 </div>
             </div>
-
-
-
-        
 
         </div>
     </div>
