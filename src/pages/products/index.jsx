@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from "react";
-import Skeleton from "react-loading-skeleton";
 import axios from "axios"
 import {Link} from "react-router-dom";
 import Product from "./Product.jsx"
@@ -12,6 +11,8 @@ import ProductSkeleton from "./ProductSkeleton.jsx";
 
 
 const Products = ({
+    products,
+    loading,
     cartItem, 
     addToCart, 
     addToWishlist, 
@@ -20,13 +21,13 @@ const Products = ({
     removeFromFavorites, 
     removeFromCart
 }) => {
-    const [products, setProducts] = useState([])
+    // const [products, setProducts] = useState([])
     const [filter, setFilter] = useState(false)
     const [categories, setCategories] = useState(false);
     const [availability, setAvailability] = useState(false);
     const [price, setPrice] = useState(false);
 
-    const [loading, setLoading] = useState(true)
+    // const [loading, setLoading] = useState(true)
 
 
 
@@ -63,16 +64,16 @@ const Products = ({
         }
     }
 
-    const url = `api/products`
+    // const url = `api/products`
 
-    useEffect(() => {
-        const fetchProducts = async () => {
-            const results = await axios.get(url)
-            setProducts(results.data)
-            setLoading(false)
-        };
-        fetchProducts()
-    }, [products, url])
+    // useEffect(() => {
+    //     const fetchProducts = async () => {
+    //         const results = await axios.get(url)
+    //         setProducts(results.data)
+    //         setLoading(false)
+    //     };
+    //     fetchProducts()
+    // }, [products, url])
 
 
 
