@@ -1,6 +1,6 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
-import { SkeletonTheme } from "react-loading-skeleton";
+import axios from "axios"
 import ScrollToTop from "./utils/scroll.jsx"
 import Navbar from "./components/navbar";
 import Home from './pages/homepage';
@@ -21,14 +21,28 @@ function App() {
 
   const [cartItem, setCartItem] = useState([])
   const [favoriteItem, setFavoriteItem] = useState([])
+  const [products, setProducts] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  const url = `api/products`
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+        const results = await axios.get(url)
+        setProducts(results.data)
+        setLoading(false)
+    };
+    fetchProducts()
+}, [products, url])
+
+
 
   const addToCart = (product) => {
-    const productExist = cartItem.find((item) => item.id === product.id)
+    const productExist = cartItem.find((item) => item._id === product._id)
     if (productExist) {
       setCartItem(
         cartItem.map((item) => (
-          item.id === product.id ? 
-          
+          item._id === product._id ? 
           { 
             ...productExist, 
             qty: productExist.qty + 1,
@@ -41,9 +55,9 @@ function App() {
   }
 
   const removeFromCart = (product) => {
-    const productExist = cartItem.find((item) => item.id === product.id)
+    const productExist = cartItem.find((item) => item._id === product._id)
     if (productExist.qty >= 1) {
-      setCartItem(cartItem.filter((item) => item.id !== product.id))
+      setCartItem(cartItem.filter((item) => item._id !== product._id))
     }
   }
 
@@ -52,11 +66,11 @@ function App() {
   }
 
   const increaseProductQuantity = (product, stock) => {
-    const productExist = cartItem.find((item) => item.id === product.id)
+    const productExist = cartItem.find((item) => item._id === product._id)
     if ( (productExist.qty >= 1) & (productExist.qty <= stock-1) ) {
       setCartItem(
         cartItem.map((item) => (
-          item.id === product.id ? 
+          item._id === product._id ? 
           { 
             ...productExist, 
             qty: productExist.qty + 1,
@@ -66,27 +80,27 @@ function App() {
   }
 
   const decreaseProductQuantity = (product) => {
-    const productExist = cartItem.find((item) => item.id === product.id)
+    const productExist = cartItem.find((item) => item._id === product._id)
     if (productExist.qty === 1) {
-      setCartItem(cartItem.filter((item) => item.id !== product.id))
+      setCartItem(cartItem.filter((item) => item._id !== product._id))
     } else {
-      setCartItem(cartItem.map((item) => (item.id === product.id ? { ...productExist, qty: productExist.qty - 1, qtyPrice: item.price * (item.qty -1) } : item)))
+      setCartItem(cartItem.map((item) => (item._id === product._id ? { ...productExist, qty: productExist.qty - 1, qtyPrice: item.price * (item.qty -1) } : item)))
     }
   }
 
   const addToWishlist = (product) => {
-    const productExist = favoriteItem.find((item) => item.id === product.id)
+    const productExist = favoriteItem.find((item) => item._id === product._id)
     if (productExist) {
-      setFavoriteItem(favoriteItem.map((item) => (item.id === product.id ? { ...productExist, qty: productExist.qty + 1 } : item)))
+      setFavoriteItem(favoriteItem.map((item) => (item._id === product._id ? { ...productExist, qty: productExist.qty + 1 } : item)))
     } else {
       setFavoriteItem([...favoriteItem, { ...product, qty: 1 }])
     }
   }
 
   const removeFromFavorites = (product) => {
-    const productExist = favoriteItem.find((item) => item.id === product.id)
+    const productExist = favoriteItem.find((item) => item._id === product._id)
     if (productExist.qty >= 1) {
-      setFavoriteItem(favoriteItem.filter((item) => item.id !== product.id))
+      setFavoriteItem(favoriteItem.filter((item) => item._id !== product._id))
     }
   }
 
@@ -101,67 +115,71 @@ function App() {
 
 
   return (
-    // <SkeletonTheme color="#990" highlightColor="#550">
-      <Router>
-        <Navbar 
-          cartItem={cartItem} 
-          favoriteItem={favoriteItem} 
-          removeFromCart={removeFromCart}
-          totalPrice={totalPrice}
+    <Router>
+      <Navbar 
+        cartItem={cartItem} 
+        favoriteItem={favoriteItem} 
+        removeFromCart={removeFromCart}
+        totalPrice={totalPrice}
+      />
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<Home 
+          products={products}
+          loading={loading}
+        
+        />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/account" element={<Account />} />
+        <Route path="/updateaccount" element={<UpdateAccount />} />
+        <Route path="/wishlist" 
+          element={<Favorites 
+            favoriteItem={favoriteItem}
+            addToCart={addToCart}
+            removeFromFavorites={removeFromFavorites}
+            removeAllProductsFromFavorites={removeAllProductsFromFavorites}
+          />} 
         />
-        <ScrollToTop />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/account" element={<Account />} />
-          <Route path="/updateaccount" element={<UpdateAccount />} />
-          <Route path="/wishlist" 
-            element={<Favorites 
-              favoriteItem={favoriteItem}
-              addToCart={addToCart}
-              removeFromFavorites={removeFromFavorites}
-              removeAllProductsFromFavorites={removeAllProductsFromFavorites}
-            />} 
-          />
 
-          <Route path="/checkout" 
-            element={<Checkout 
+        <Route path="/checkout" 
+          element={<Checkout 
+          cartItem={cartItem} 
+          totalPrice={totalPrice}
+          />} 
+        />
+
+        <Route path="/cart" 
+          element={<Cart 
             cartItem={cartItem} 
+            addToCart={addToCart} 
+            removeFromCart={removeFromCart} 
+            removeAllProductsFromCart={removeAllProductsFromCart} 
+            increaseProductQuantity={increaseProductQuantity}
+            decreaseProductQuantity={decreaseProductQuantity}
             totalPrice={totalPrice}
-            />} 
-          />
-
-          <Route path="/cart" 
-            element={<Cart 
-              cartItem={cartItem} 
-              addToCart={addToCart} 
-              removeFromCart={removeFromCart} 
-              removeAllProductsFromCart={removeAllProductsFromCart} 
-              increaseProductQuantity={increaseProductQuantity}
-              decreaseProductQuantity={decreaseProductQuantity}
-              totalPrice={totalPrice}
-            />} 
-          />
-          <Route path="/products" 
-            element={<Products 
-              cartItem={cartItem} 
-              favoriteItem={favoriteItem}
-              addToCart={addToCart} 
-              removeFromCart={removeFromCart}
-              addToWishlist={addToWishlist}
-              removeFromFavorites={removeFromFavorites}
-              increaseProductQuantity={increaseProductQuantity}
-              decreaseProductQuantity={decreaseProductQuantity}
-              
-            />} 
-          />
-          <Route path="/products/:id" element={<ProductDescriptionPage />} />
-          <Route path="*" element={<PageNotFound />} />
-        </Routes>
-        <Footer />
-      </Router>
-    // </SkeletonTheme>
+          />} 
+        />
+        <Route path="/products" 
+          element={<Products 
+            products={products}
+            loading={loading}
+            cartItem={cartItem} 
+            favoriteItem={favoriteItem}
+            addToCart={addToCart} 
+            removeFromCart={removeFromCart}
+            addToWishlist={addToWishlist}
+            removeFromFavorites={removeFromFavorites}
+            increaseProductQuantity={increaseProductQuantity}
+            decreaseProductQuantity={decreaseProductQuantity}
+            
+          />} 
+        />
+        <Route path="/products/:_id" element={<ProductDescriptionPage />} />
+        <Route path="*" element={<PageNotFound />} />
+      </Routes>
+      <Footer />
+    </Router>
   );
 }
 
