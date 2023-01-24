@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-// import { FiChevronRight, FiChevronLeft } from 'react-icons/fi';
 import {useNavigate} from "react-router-dom";
 
 import SliderData from "../../data/sliderData.js"
@@ -18,10 +17,6 @@ const Slider = () => {
     const nextSlide = () => {
         setCurrentSlide(currentSlide === slideLength - 1 ? 0 : currentSlide + 1)
     }
-
-    // const prevSlide = () => {
-    //     setCurrentSlide(currentSlide === 0 ? slideLength - 1 : currentSlide -1);
-    // }
 
     const auto = () => {
         slideInterval = setInterval(nextSlide, intervalTime )
@@ -43,13 +38,6 @@ const Slider = () => {
   return (
     <div className="flex flex-row items-center w-full  bg-[#e0e0e059] ">
         <div className="flex flex-row items-center justify-between h-full w-full" >
-            {/* <div className="flex justify-center absolute left-0 z-30" onClick={() => prevSlide()}>
-                <FiChevronLeft />
-            </div>
-
-            <div className="flex justify-center absolute right-0 z-30 " onClick={()=> nextSlide()} >
-                <FiChevronRight />
-            </div> */}
 
             {
                 SliderData.map((slide, i) => {
@@ -71,8 +59,6 @@ const Slider = () => {
                                             </div>
 
                                         </div>
-
-
 
                                         <div className="absolute flex items-center content-center flex-nowrap justify-end w-[100%] h-full 4xs:-right-[150px] sm:right-0 ">
                                             <div className="w-[500px] h-auto ">

@@ -5,21 +5,24 @@ import Three from "../assets/tables/TA1.png"
 const SliderData  = [
     {
         image: One,
-        subtitle: "CHAIR COLLECTION 2022",
+        subtitle: "CHAIR COLLECTION 2023",
         title: "WELCOME TO HOMEO",
         desc: "This is the description of slide one Lorem ipsum dolor, sit amet consectetur adipisicing elit. Modi quos quas, voluptatum nesciunt illum exercitationem.",
+        category: "chairs"
     },
     {
         image: Two,
-        subtitle: "CHAIR COLLECTION 2022",
+        subtitle: "COUCH COLLECTION 2023",
         title: "WELCOME TO HOMEO",
         desc: "This is the description of slide one Lorem ipsum dolor, sit amet consectetur adipisicing elit. Modi quos quas, voluptatum nesciunt illum exercitationem.",
+        category: "couches"
     },
     {
         image: Three,
-        subtitle: "CHAIR COLLECTION 2022",
+        subtitle: "TABLES COLLECTION 2023",
         title: "WELCOME TO HOMEO",
         desc: "This is the description of slide one Lorem ipsum dolor, sit amet consectetur adipisicing elit. Modi quos quas, voluptatum nesciunt illum exercitationem.",
+        category: "tables"
     },
 ];
 
