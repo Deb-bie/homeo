@@ -6,12 +6,15 @@ import Sales from '../../components/sales';
 import Blogs from '../../components/blogs';
 
 
-const Home = () => {
+const Home = ({products, loading}) => {
   return (
     <div>
       <Slider />
       <Categories />
-      <FeaturedProducts />
+      <FeaturedProducts 
+        products={products} 
+        loading={loading} 
+      />
       <Sales />
       <Blogs />
     </div>
