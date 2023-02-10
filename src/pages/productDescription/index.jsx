@@ -1,12 +1,19 @@
-import React from "react"
+import React, {useState} from "react"
 import {Link, useLocation} from "react-router-dom"
-import {IoHeartOutline} from "react-icons/io5";
+import {IoHeartOutline, IoAdd, IoCartOutline, IoHeart, IoCart} from "react-icons/io5";
 import {GiArrowScope} from "react-icons/gi"
+import {GrFormSubtract} from "react-icons/gr"
 
 import Image1 from "../../assets/images/1.jpg"
 
-const ProductDescriptionPage = ({product}) => {
+const ProductDescriptionPage = ({product, addToCart, increaseProductQuantity, decreaseProductQuantity, cartItem, addToWishlist, removeFromFavorites, removeFromCart}) => {
     const location = useLocation();
+
+    const [fav, setFav] = useState(false)
+    const [cart, setCart] = useState(false)
+
+    const handleCart = () => {setCart(!cart)}
+    const handleFav = () => {setFav(!fav)}
 
 
     return (
@@ -39,19 +46,75 @@ const ProductDescriptionPage = ({product}) => {
                         </p>
 
                         <div className="4xs:w-[100%] sm:w-[100%] flex 4xs:flex-col gap-6 sm:flex-row justify-between content-center items-center mb-8  ">
-                            <div className="py-2 text-xl 4xs:w-[100%] sm:w-[40%] flex flex-row justify-evenly border-[1px] border-black  ">
-                                <div>-</div>
-                                <div>1</div>
-                                <div>+</div>
+                            <div className="py-2 text-xl 4xs:w-[100%] sm:w-[40%] flex flex-row justify-evenly items-center border-[1px] border-black  ">
+                                <div onClick={() => decreaseProductQuantity(location.state.product)} className="cursor-pointer"><GrFormSubtract /></div>
+                                
+                                {
+                                    cartItem.length > 0
+                                    ? <>
+                                        {
+                                            cartItem.map((cart, id) => (
+                                                <div key={id}>{cart.qty}</div>
+                                            ))
+                                        }
+                                    </>
+                                    : <div>{location.state.product.qty}</div>
+                                }
+                                
+                                <div onClick={() => increaseProductQuantity(location.state.product, location.state.product.stock, location.state.product.qty)} className="cursor-pointer"><IoAdd /></div>
                             </div>
 
-                            <div className="4xs:w-[100%] sm:w-[40%] " >
+                            {/* <div className="4xs:w-[100%] sm:w-[40%] " onClick={() => addToCart(location.state.product)} >
                                 <button className="w-[100%] py-2  flex flex-row flex-wrap justify-center bg-black text-white ">Add to Cart</button>
-                            </div>
+                            </div> */}
 
+
+                                <div onClick={
+                                    cart ? 
+                                        () => {removeFromCart(location.state.product); handleCart(!cart) }      
+                                    :
+                                        () => {addToCart(location.state.product); handleCart(!cart)}
+                                    } 
+                                    style={{
+                                        backgroundColor: cart ? '#e92467' : '', 
+                                        color: cart ? "white" : '', 
+                                        borderColor: cart ? "transparent" : "",
+                                    }} 
+                                    className="icons rounded-[70%] bg-white 4xs:text-base sm:text-xl text-black 4xs:p-2 sm:p-4 "
+                                >
+                                    <IoCartOutline />
+                                </div>
+
+
+                                <div 
+                                    onClick={
+                                        fav ? 
+                                             () => {removeFromFavorites(location.state.product); handleFav(!fav) }      
+                                        :
+                                            () => {addToWishlist(location.state.product); handleFav(!fav)}
+                                    } 
+                                    style={{
+                                        backgroundColor: fav ? '#e92467' : '', 
+                                        color: fav ? "white" : '', 
+                                        borderColor: fav ? "transparent" : "",
+                                    }} 
+                                    className="icons rounded-[70%] bg-white 4xs:text-base sm:text-xl text-black 4xs:p-2 sm:p-4 "
+                                >
+                                    <IoHeartOutline />
+                                </div>
+
+
+
+
+
+
+
+
+
+{/* 
                             <div className="4xs:w-[100%] sm:w-[10%] flex flex-row justify-center text-3xl">
                                 <IoHeartOutline className="flex flex-row" />
-                            </div>
+                            </div> */}
                         </div>
 
                         <h1 className="flex text-xl">Category: {location.state.product.category}</h1>

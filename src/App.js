@@ -45,7 +45,7 @@ function App() {
           item._id === product._id ? 
           { 
             ...productExist, 
-            qty: productExist.qty + 1,
+            qty: (1) ,
             qtyPrice: productExist.qty * productExist.price,
           } 
         : item)))
@@ -72,7 +72,7 @@ function App() {
         cartItem.map((item) => (
           item._id === product._id ? 
           { 
-            ...productExist, 
+            ...productExist , 
             qty: productExist.qty + 1,
             qtyPrice: item.price * (item.qty + 1)
           } : item)))
@@ -175,7 +175,18 @@ function App() {
             
           />} 
         />
-        <Route path="/products/:_id" element={<ProductDescriptionPage />} />
+        <Route path="/products/:_id" 
+          element={<ProductDescriptionPage 
+            increaseProductQuantity={increaseProductQuantity}
+            cartItem={cartItem}
+            removeFromCart={removeFromCart}
+            decreaseProductQuantity={decreaseProductQuantity}
+            addToCart={addToCart}
+            addToWishlist={addToWishlist}
+            removeFromFavorites={removeFromFavorites}
+          
+          />} 
+        />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
       <Footer />

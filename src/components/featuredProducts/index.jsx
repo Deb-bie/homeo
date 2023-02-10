@@ -13,16 +13,6 @@ const FeaturedProducts = () => {
                 `/products/${product._id}`,
                 {
                     state: {
-                        // _id: product._id,
-                        // name: product.name,
-                        // description: product.description,
-                        // category: product.category,
-                        // stock: product.stock,
-                        // price: product.price,
-                        // availability: product.availability,
-                        // additionalInformation: product.additionalInformation,
-                        // image: product.image,
-                        // featured: product.featured,
                         product: product
                     }
                 }
