@@ -24,7 +24,7 @@ function App() {
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(true)
 
-  const url = `api/products`
+  const url = 'https://homeo-api.onrender.com/api/products';
 
   useEffect(() => {
     const fetchProducts = async () => {

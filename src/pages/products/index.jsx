@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from "react";
-import axios from "axios"
 import {Link} from "react-router-dom";
 import Product from "./Product.jsx"
 import {FaBars} from "react-icons/fa"
@@ -21,14 +20,10 @@ const Products = ({
     removeFromFavorites, 
     removeFromCart
 }) => {
-    // const [products, setProducts] = useState([])
     const [filter, setFilter] = useState(false)
     const [categories, setCategories] = useState(false);
     const [availability, setAvailability] = useState(false);
     const [price, setPrice] = useState(false);
-
-    // const [loading, setLoading] = useState(true)
-
 
 
     const handleCategories = () => {
